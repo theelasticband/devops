@@ -30,4 +30,4 @@ jobs:
         with:
           context: apps/app2/.
           push: true
-          tags: aandonov/app1:latest
+          tags: aandonov/app2:latest
