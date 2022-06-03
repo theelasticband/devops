@@ -1,2 +1,1 @@
 FROM nginx
-USER 1000
