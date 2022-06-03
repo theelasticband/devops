@@ -16,7 +16,7 @@ Parameters:
    The application images are published under `aandonov/app1:latest` and `aandonov/app2:latest` in dockerhub.
    The applications are only nginx, so deploy them in scale=1 and as a regular deployment in namespace `local`
 # 3. Promoting the image
-  - Alter the github action (to be a PR/merge when ready) to build a semver tag of the image (app1 and app2 respectively) based on the commit sha in github `stage-<vM.m.p>-<hash>
+  - Alter the github action (to be a PR/merge when ready) to build a semver tag of the image (app1 and app2 respectively) based on the commit sha in github `stage-<vM.m.p>-<hash>`
   - After every successful merge the build config will be reset so that the next person has the chance 
   - in ArgoCD prepare a 2nd deployment in namespace `stage` of the 2 apps
   - create deployment based on the semver of the image above
