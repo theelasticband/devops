@@ -7,4 +7,4 @@ spec:
    - name: app1
      image: aandonov/app1:latest
      ports:
-     - containerPort: 6379
+     - containerPort: 8080
