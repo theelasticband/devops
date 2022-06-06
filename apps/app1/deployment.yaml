@@ -9,8 +9,6 @@ spec:
       app: app1
   template:
     metadata:
-      labels:
-        app: nginx
     spec:
       containers:
       - name: app1
