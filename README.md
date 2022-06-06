@@ -12,7 +12,7 @@ Parameters:
 - location cluster/<clustername>
   
 # 2. The following excercise main purpose is to develop practical kubernetes/git/gitops skills
-   Deploy app1 and app2 in namespace stage using argocd
+   Deploy app1 and app2 in namespace local using argocd
    The application images are published under `aandonov/app1:latest` and `aandonov/app2:latest` in dockerhub.
    The applications are only nginx, so deploy them in scale=1 and as a regular deployment in namespace `local`
 # 3. Promoting the image
