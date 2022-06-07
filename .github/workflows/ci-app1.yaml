@@ -13,6 +13,13 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+      - 
+        name: Git Version
+        uses: codacy/git-version@2.2.0
+
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -26,14 +33,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Git Semantic Version
-        uses: PaulHatch/semantic-version@v5.0.0-alpha2
-      -
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
           context: apps/app1/.
           push: true
-          tags: aandonov/app1:latest
+          tags: aandonov/app1:${{git log -1 --pretty=%h}}
       
           
