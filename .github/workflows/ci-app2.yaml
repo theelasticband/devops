@@ -3,7 +3,7 @@ name: ci-app2
 on:
   push:
     branches:
-      - 'main'
+      - 'zgrujic'
     paths:
       - 'apps/app2/**'
 jobs:
