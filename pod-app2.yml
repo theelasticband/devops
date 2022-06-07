@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: app2
+   namespace: local
+   labels:
+      app: web-nginx
+spec:
+   containers:
+   - name: app2
+     image: aandonov/app2:latest
+     ports:
+     - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-service
+  namespace: local
+spec:
+  type: NodePort
+  selector:
+    app: web-nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31090
