@@ -1,16 +1,24 @@
----
-apiVersion: apps/v1
+piVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: local
-  name: app1
+  name: nginx-deployment
   labels:
-    app: web
+    app: nginx
 spec:
-  containers:
-    - name: nginx
-      image: aandonov/app1:latest
-      ports:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: aandonov/app1:latest
+        ports:
         - containerPort: 80
 ---
 apiVersion: v1
