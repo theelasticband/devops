@@ -19,7 +19,9 @@ jobs:
       - 
         name: Git Version
         uses: codacy/git-version@2.2.0
-
+        with:
+          prefix: module1-
+          log-path: module1/
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
