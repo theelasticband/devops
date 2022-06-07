@@ -15,11 +15,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app1
+  name: app1-service
 spec:
+  type: nodePort
   selector:
-    app: app1
+    app: web-nginx
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 30080
