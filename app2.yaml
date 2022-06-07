@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: local
+  name: app2
+  labels:
+    app: web
+spec:
+  containers:
+    - name: nginx
+      image: aandonov/app2:latest
+      ports:
+        - containerPort: 80
