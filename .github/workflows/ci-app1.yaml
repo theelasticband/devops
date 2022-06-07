@@ -20,8 +20,8 @@ jobs:
         name: Git Version
         uses: codacy/git-version@2.2.0
         with:
-          prefix: module1-
-          log-path: module1/
+          prefix: cluster-
+          log-path: cluster/
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -40,6 +40,6 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: aandonov/app1:${{git log -1 --pretty=%h}}
+          tags: aandonov/app1:latest
       
           
