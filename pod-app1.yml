@@ -10,7 +10,7 @@ spec:
    - name: app1
      image: aandonov/app1:latest
      ports:
-     - containerPort: 8080
+     - containerPort: 8090
 ---
 apiVersion: v1
 kind: Service
@@ -22,6 +22,6 @@ spec:
     app: web-nginx
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 8090
+      targetPort: 8090
       nodePort: 31080
