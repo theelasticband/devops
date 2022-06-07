@@ -26,9 +26,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Git Semantic Version
+        uses: PaulHatch/semantic-version@v5.0.0-alpha2
+      -
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
           context: apps/app1/.
           push: true
           tags: aandonov/app1:latest
+      
+          
