@@ -2,12 +2,15 @@ apiVersion: v1
 kind: Pod
 metadata:
    name: app1
+   namespace: local
+   labels:
+      app: web-nginx
 spec:
    containers:
    - name: app1
      image: aandonov/app1:latest
      ports:
-     - containerPort: 9090
+     - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -18,5 +21,5 @@ spec:
     app: app1
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 9090
+      port: 80
+      targetPort: 80
