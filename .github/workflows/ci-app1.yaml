@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'vprocopan'
+      - 'main'
     paths:
       - 'apps/app1/**'
 jobs:

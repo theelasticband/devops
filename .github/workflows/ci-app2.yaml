@@ -3,6 +3,7 @@ name: ci-app2
 on:
   push:
     branches:
+      - 'vprocopan'
       - 'main'
     paths:
       - 'apps/app2/**'
