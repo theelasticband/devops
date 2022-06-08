@@ -3,6 +3,7 @@ name: ci-app1
 on:
   push:
     branches:
+      - 'vprocopan'
       - 'main'
     paths:
       - 'apps/app1/**'
@@ -13,6 +14,15 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+      - 
+        name: Git Version
+        uses: codacy/git-version@2.2.0
+        with:
+          prefix: cluster-
+          log-path: cluster/
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -31,4 +41,6 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: aandonov/app1:latest
+          tags: aandonov/app1:{MAJOR}.{MINOR}.{PATCH}-{sanitized-branch-name}.{commits-distance}.{hash}
+      
+          
