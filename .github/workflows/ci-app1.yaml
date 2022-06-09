@@ -17,17 +17,29 @@ jobs:
         with:
           ref: ${{ github.head_ref }}   # checkout the correct branch name
           fetch-depth: 0                # fetch the whole repo history
-      -
-        name: Docker meta
-        id: meta
+      - name: metadata
+        id: metadata
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern=stage-{{major}}.{{minor}}.{{patch}},value=${GITHUB_SHA}
+            type=semver,pattern=stage-{{major}}.{{minor}},value=${GITHUB_SHA}
+            type=semver,pattern=stage-{{major}},value=${GITHUB_SHA}
+
+      
+      
+      #-
+      #  name: Docker meta
+      #  id: meta
+      #  uses: docker/metadata-action@v4
+      #  with:
+      #    images: aandonov/app1
+      #    tags: |
+      #      type=ref,event=branch
+      #      type=ref,event=pr
+      #      type=semver,pattern={{version}}
+      #      type=semver,pattern={{major}}.{{minor}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -44,9 +56,5 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
-          context: apps/app1/.
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-      
-          
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
