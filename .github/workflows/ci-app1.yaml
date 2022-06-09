@@ -3,12 +3,14 @@ name: ci
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
+      - 'vprocopan'
+      - 'zgrujic'
     tags:
       - 'v*'
   pull_request:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   docker:
