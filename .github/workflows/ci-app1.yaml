@@ -19,10 +19,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
-          tags: |
-            type=semver,pattern=stage-{{major}}.{{minor}}.{{patch}},value=${GITHUB_SHA}
-            type=semver,pattern=stage-{{major}}.{{minor}},value=${GITHUB_SHA}
-            type=semver,pattern=stage-{{major}},value=${GITHUB_SHA}
+          tags: type=raw,value=stage-{{major}}.{{minor}}.{{patch}}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
