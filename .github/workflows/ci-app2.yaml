@@ -13,6 +13,13 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      - 
+        name: metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: aandonov/app2
+          tags: type=raw,value=stage-1.0.0-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -29,6 +36,6 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
-          context: apps/app2/.
+          context: apps/app1/.
           push: true
-          tags: aandonov/app2:stage-{MAJOR}.{MINOR}.{PATCH}-${GITHUB_SHA}
+          tags: ${{ steps.metadata.outputs.tags }}
