@@ -41,6 +41,6 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: aandonov/app1:{MAJOR}.{MINOR}.{PATCH}-{sanitized-branch-name}.{commits-distance}.{hash}
+          tags: aandonov/app1:${COMMIT_SHA}
       
           
