@@ -17,12 +17,13 @@ jobs:
         with:
           ref: ${{ github.head_ref }}   # checkout the correct branch name
           fetch-depth: 0                # fetch the whole repo history
-      - 
-        name: Git Version
-        uses: codacy/git-version@2.2.0
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
         with:
-          prefix: cluster-
-          log-path: cluster/
+          images: name/app
+      
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -40,7 +41,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: apps/app1/.
-          push: true
-          tags: aandonov/app1:${COMMIT_SHA}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
       
           
