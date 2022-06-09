@@ -16,14 +16,8 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         
-      -
-        name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: aandonov/app1
-          tags:  type=sha
-
+      - uses: tenhaus/get-release-or-tag@v2
+        id: tag
       
       
       #-
@@ -53,4 +47,4 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.tag.outputs.tag }}
