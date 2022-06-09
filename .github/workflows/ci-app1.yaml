@@ -6,8 +6,9 @@ on:
       - 'main'
       - 'vprocopan'
       - 'zgrujic'
-    paths:
-      - 'apps/app1/**'
+    tags:
+      - 'v*'
+  
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -20,7 +21,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: aandonov/app1
+          images: |
+            name/app
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
