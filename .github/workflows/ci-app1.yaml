@@ -54,4 +54,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${GITHUB_SHA}
+          tags: ${{ GITHUB_SHA }}
