@@ -3,8 +3,8 @@ name: ci-app1
 on:
   push:
     branches:
-      - 'vprocopan'
       - 'main'
+      - 'vprocopan'
       - 'zgrujic'
     paths:
       - 'apps/app1/**'
@@ -22,7 +22,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
-          
+          tags:  type=sha
 
       
       
@@ -54,4 +54,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags:  github.sha
+          tags: ${{ steps.meta.outputs.tags }}
