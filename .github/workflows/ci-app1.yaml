@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'vprocopan'
-      - 'zgrujic'
     paths:
       - 'apps/app1/**'
 jobs:
@@ -15,22 +13,9 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-        
-      - uses: tenhaus/get-release-or-tag@v2
+      - 
+        uses: tenhaus/get-release-or-tag@v2
         id: tag
-      
-      
-      #-
-      #  name: Docker meta
-      #  id: meta
-      #  uses: docker/metadata-action@v4
-      #  with:
-      #    images: aandonov/app1
-      #    tags: |
-      #      type=ref,event=branch
-      #      type=ref,event=pr
-      #      type=semver,pattern={{version}}
-      #      type=semver,pattern={{major}}.{{minor}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -47,4 +32,6 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
-          tags: ${{ steps.tag.outputs.tag }}
+          context: apps/app1/.
+          push: true
+          tags: aandonov/app1:${{ steps.tag.outputs.tag }}
