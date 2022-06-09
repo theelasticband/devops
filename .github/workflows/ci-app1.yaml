@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'main'
+      - 'vprocopan'
+      - 'zgrujic'
     paths:
       - 'apps/app1/**'
 jobs:
