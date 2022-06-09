@@ -39,4 +39,4 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: aandonov/app1: ${{ steps.meta.outputs.tags }}
+          tags: aandonov/app1:${{ steps.meta.outputs.tags }}
