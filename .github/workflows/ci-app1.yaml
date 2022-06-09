@@ -36,5 +36,6 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
+          context: apps/app1/.
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
