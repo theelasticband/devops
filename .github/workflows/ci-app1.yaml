@@ -53,5 +53,4 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
-          images: aandonov/app1
           tags: ${{ steps.meta.outputs.tags }}
