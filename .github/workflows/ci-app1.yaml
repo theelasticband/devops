@@ -19,7 +19,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
-          tags: type=semver,pattern={{major}}.{{minor}}.{{patch}}, value=1.0.0
+          tags: type=semver,pattern={{major}}.{{minor}}.{{patch}}, value=1.0.0-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -38,4 +38,4 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: ${{ steps.metadata.outputs.tags }}
+          tags: aandonov/app1:stage-${{ steps.metadata.outputs.tags }}
