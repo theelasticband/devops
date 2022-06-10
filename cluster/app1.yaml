@@ -5,12 +5,12 @@ metadata:
   name: nginx-deployment
   labels:
     app: nginx
-    version: "1"
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: nginx
+      version: v1
   template:
     metadata:
       labels:
