@@ -24,7 +24,7 @@ jobs:
           images: |
             aandonov/app1
           tags: |
-            tags: type=raw,value=stage-1.0.0-{{sha}}
+            tags: type=raw,value=vprocopan-stage-1.0.0-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
