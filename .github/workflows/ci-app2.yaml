@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+    tags: [ 'stage','v1.0.1','52a18aa076c388295985c70fb54e1a6cf5cbd8ed' ]
     paths:
       - 'apps/app2/**'
 jobs:
