@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: nginx
-      version: v1
   template:
     metadata:
       labels:
