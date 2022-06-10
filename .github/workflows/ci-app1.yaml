@@ -22,7 +22,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            name/app
+            aandonov/app1
           tags: |
             tags: type=raw,value=stage-1.0.0-{{sha}}
       -
