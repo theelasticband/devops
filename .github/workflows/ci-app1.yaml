@@ -3,8 +3,7 @@ name: ci-app1
 on:
   push:
     branches:
-      - 'main'
-    tags: [ 'stage','v1.0.1','52a18aa076c388295985c70fb54e1a6cf5cbd8ed' ]
+      - 'ajindra'
     paths:
       - 'apps/app1/**'
 jobs:
@@ -14,6 +13,13 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: aandonov/app1
+          tags: type=raw,stage-1.0.1-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -32,4 +38,4 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: aandonov/app1:latest
+          tags: ${{ steps.meta.outputs.tags }}
