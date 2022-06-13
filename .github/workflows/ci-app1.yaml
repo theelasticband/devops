@@ -3,6 +3,7 @@ name: ci-app1
 on:
   push:
     branches:
+      - 'vprocopan'
       - 'main'
       - 'ajindra'
     tags:
@@ -16,6 +17,15 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+      - 
+        name: Git Version
+        uses: codacy/git-version@2.2.0
+        with:
+          prefix: cluster-
+          log-path: cluster/
       -
         name: Docker meta
         id: meta
