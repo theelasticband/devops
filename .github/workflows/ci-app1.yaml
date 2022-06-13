@@ -3,7 +3,10 @@ name: ci-app1
 on:
   push:
     branches:
+      - 'main'
       - 'ajindra'
+    tags:
+      - 'v*'
     paths:
       - 'apps/app1/**'
 jobs:
@@ -19,7 +22,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
-          tags: type=raw,stage-1.0.1-{{sha}}
+          tags: type=raw,stage-{{version}}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
