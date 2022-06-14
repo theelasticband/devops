@@ -18,7 +18,7 @@ jobs:
         id: read_file
         uses: andstor/file-reader-action@v1
         with:
-          path: apps/app1/version
+          path: apps/app2/version
       - 
         name: Bump release version
         id: bump_version
