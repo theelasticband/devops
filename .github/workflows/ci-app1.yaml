@@ -8,6 +8,7 @@ on:
       - 'klincharov'
     paths:
       - 'apps/app1/**'
+      - '!apps/app1/.version'
 
 jobs:
   docker:
@@ -45,22 +46,37 @@ jobs:
         with:
           path: ./apps/app1/.version
           
-      - name: Parse and Load SemVer
+      -
+        name: Parse and Load SemVer
         run: |
           IFS='.'
           read -a semver <<< ${{ steps.semver-reader.outputs.content }}
           
-          if [ -z "${semver[0]}" ] || [ -z "${semver[1]}" ] || [ -z "${semver[2]}" ]; then # basic format check
+          if [ -z "${semver[0]}" ] || [ -z "${semver[1]}" ] || [ -z "${semver[2]}" ]; then      # basic format check
             echo "Error: Invalid semver format."
             exit 1
           fi
           
-          echo "GITHUB_SHA_VALUE=`echo $GITHUB_SHA | cut -c 9- `" >> $GITHUB_ENV # setting patch semver version value
-          echo "V_MAJOR=${semver[0]}" >> $GITHUB_ENV # setting major semver version value 
-          echo "V_MINOR=${semver[1]}" >> $GITHUB_ENV # setting minor semver version value
-          echo "V_PATCH=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV # setting patch semver version value
+          echo "GITHUB_SHA_VALUE=`echo $GITHUB_SHA | cut -c 9- `" >> $GITHUB_ENV                # extract github sha (value only) and add to env 
+          echo "V_MAJOR=${semver[0]}" >> $GITHUB_ENV                                            # setting major semver version value 
+          echo "V_MINOR=${semver[1]}" >> $GITHUB_ENV                                            # setting minor semver version value
+          echo "V_PATCH=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV                                      # setting patch semver version value
+        
+      -
+        name: Save current version
+        run: | 
+          echo "${{ env.V_MAJOR }}.${{ env.V_MINOR }}.${{ env.V_PATCH }}" > ./apps/app1/.version  
+          git config --local user.name "${{ secrets.GH_USERNAME }}"                             # Username would need to be provided for this step as actions secret
+          git add ./apps/app1/.version
+          git commit -m "Change local .version file for ${{ env.GITHUB_SHA_VALUE }}"            
+          
+      -
+        name: Push current version file
+        uses: ad-m/github-push-action@master
+        with: 
+          github_token: ${{ secrets.GH_PASSWORD }}                                              # Password would need to be provided for this step as actions secret
+          branch: ${{ github.ref }}
 
-          echo "${env.V_MAJOR}.${env.V_MINOR}.{env.V_PATCH}" > apps/app1/.version 
       - 
         name: Build and push app1
         uses: docker/build-push-action@v3
