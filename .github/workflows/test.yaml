@@ -19,7 +19,6 @@ jobs:
         id: semver-update
         with:
           semver-update-type: 'patch' # Change this string to any suitable string mentioned in the Inputs section of this action's readme to suit your needs.
-          project-settings-path: 'ProjectSettings/ProjectSettings.asset' # optional: specify the exact location of the ProjectSettings file, otherwise action will attempt to automatically find it.
       - 
         name: metadata
         id: metadata
