@@ -18,8 +18,10 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
+          current-version: '2.11.7'
+          version-fragment: 'bug'
           images: aandonov/app1
-          tags: type=raw,value=v1.1.1-${{GITHUB_SHA}}
+          tags: type=raw,value=${{ steps.bump_version.outputs.next-version }}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
