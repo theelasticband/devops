@@ -18,8 +18,9 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
+          semver-update-type: 'patch'
           images: aandonov/app1
-          tags: type=raw,value=stage-1.0.0-{{sha}}
+          tags: type=raw,value=${{ steps.semver-update.outputs.semver-number }}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
