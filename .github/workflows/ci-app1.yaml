@@ -24,8 +24,8 @@ jobs:
         id: bump_version
         uses: christian-draeger/increment-semantic-version@1.0.2
         with:
-          current-version: "${{ steps.read_file.outputs.contents }}"
-          version-fragment: 'bug' 
+          current-version: ${{ steps.read_file.outputs.contents }}
+          version-fragment: bug
       - 
         name: metadata
         id: metadata
