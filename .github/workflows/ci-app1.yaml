@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'main'
+      - 'klincharov'
     paths:
       - 'apps/app1/**'
 
@@ -47,7 +48,9 @@ jobs:
           echo "GITHUB_SHA_VALUE=`echo $GITHUB_SHA | cut -c 9- `" >> $GITHUB_ENV # setting patch semver version value
           echo "V_MAJOR=${semver[0]}" >> $GITHUB_ENV # setting major semver version value 
           echo "V_MINOR=${semver[1]}" >> $GITHUB_ENV # setting minor semver version value
-          echo "V_PATCH=${semver[2]}" >> $GITHUB_ENV # setting patch semver version value
+          echo "V_PATCH=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV # setting patch semver version value
+
+          echo "${env.V_MAJOR}.${env.V_MINOR}.{env.V_PATCH}" > apps/app1/.version 
       - 
         name: Build and push app1
         uses: docker/build-push-action@v3
