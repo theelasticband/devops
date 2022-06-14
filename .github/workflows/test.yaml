@@ -1,0 +1,48 @@
+name: ci-app1
+
+on:
+  push:
+    branches:
+      - 'zgrujic'
+    paths:
+      - 'apps/app1/**'
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Find ProjectSettings.asset & increment its bundleVersion number
+        uses: AlexHolderDeveloper/UnityAutomatedSemver@v1.0.0 # Change v1.0.0 to whatever tag is newer in the AlexHolderDeveloper/UnityAutomatedSemver repository.
+        id: semver-update
+        with:
+          semver-update-type: 'patch' # Change this string to any suitable string mentioned in the Inputs section of this action's readme to suit your needs.
+          project-settings-path: 'ProjectSettings/ProjectSettings.asset' # optional: specify the exact location of the ProjectSettings file, otherwise action will attempt to automatically find it.
+      - 
+        name: metadata
+        id: metadata
+        uses: docker/metadata-action@v4
+        with:
+          images: aandonov/app1
+          tags: type=raw,value=${{ steps.semver-update.outputs.semver-number }}-{{sha}}
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push app1
+        uses: docker/build-push-action@v3
+        with:
+          context: apps/app1/.
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
