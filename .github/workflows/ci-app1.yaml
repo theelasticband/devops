@@ -14,12 +14,17 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       - 
+        name: Bump release version
+        id: bump_version
+        uses: christian-draeger/increment-semantic-version@1.0.2
+        with:
+          current-version: '2.11.7'
+          version-fragment: 'bug' 
+      - 
         name: metadata
         id: metadata
         uses: docker/metadata-action@v4
         with:
-          current-version: '2.11.7'
-          version-fragment: 'bug'
           images: aandonov/app1
           tags: type=raw,value=${{ steps.bump_version.outputs.next-version }}-{{sha}}
       -
