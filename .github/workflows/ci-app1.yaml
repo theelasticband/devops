@@ -66,7 +66,7 @@ jobs:
         name: Save current version
         run: | 
           echo "${{ env.V_MAJOR }}.${{ env.V_MINOR }}.${{ env.V_PATCH }}" > ./apps/app1/.version  
-          git config --local user.name "${{ secrets.GH_USERNAME }}"                             # Username would need to be provided for this step as actions secret
+          git config --local user.name "${{ secrets.GH_USERNAME }}"                             # GitHub username would need to be provided for this step as actions secret
           git add ./apps/app1/.version
           git commit -m "Change local .version file for ${{ env.GITHUB_SHA_VALUE }}"            
           
@@ -74,7 +74,7 @@ jobs:
         name: Push current version file
         uses: ad-m/github-push-action@master
         with: 
-          github_token: ${{ secrets.GH_PASSWORD }}                                              # Password would need to be provided for this step as actions secret
+          github_token: ${{ secrets.GH_PASSWORD }}                                              # GitHub password would need to be provided for this step as actions secret
           branch: ${{ github.ref }}
 
       - 
