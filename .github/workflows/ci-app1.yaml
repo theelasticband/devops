@@ -13,12 +13,18 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      -
+        name: Read file contents
+        id: read_file
+        uses: andstor/file-reader-action@v1
+        with:
+          path: apps/app1/version
       - 
         name: Bump release version
         id: bump_version
         uses: christian-draeger/increment-semantic-version@1.0.2
         with:
-          current-version: '2.11.7'
+          current-version: ${{ steps.read_file.outputs.contents }}
           version-fragment: 'bug' 
       - 
         name: metadata
