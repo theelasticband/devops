@@ -37,7 +37,8 @@ jobs:
         with:
           images: aandonov/app1
           tags: |
-            type=semver, pattern={{raw}}
+            type=semver, pattern={{version}}
+
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
