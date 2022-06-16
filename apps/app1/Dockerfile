@@ -1,2 +1,2 @@
-#FROM nginx
+#FROM nginx1
 FROM nginx
