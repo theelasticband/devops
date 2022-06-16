@@ -55,4 +55,4 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }} #just to change something
