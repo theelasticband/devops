@@ -3,8 +3,9 @@ name: ci-app1
 on:
   push:
     branches:
-      - 'vprocopan'
       - 'main'
+      - 'vprocopan'
+      - 'zgrujic'
       - 'ajindra'
     tags:
       - 'v*'
@@ -55,4 +56,4 @@ jobs:
         with:
           context: apps/app1/.
           push: true
-          tags: ${{ steps.meta.outputs.tags }} #just to change something
+          tags: ${{ steps.meta.outputs.tags }}

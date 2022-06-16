@@ -3,8 +3,9 @@ name: ci-app2
 on:
   push:
     branches:
-      - 'vprocopan'
       - 'main'
+      - 'vprocopan'
+      - 'zgrujic'
       - 'ajindra'
     tags:
       - 'v*'
