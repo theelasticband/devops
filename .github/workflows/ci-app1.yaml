@@ -6,6 +6,7 @@ on:
       - 'main'
       - 'vprocopan'
       - 'zgrujic'
+      - 'ajindra'
     tags:
       - 'v*'
   
