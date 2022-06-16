@@ -16,7 +16,7 @@ spec:
         app: web-nginx1new
     spec:  
       containers:
-      - name: app1
+      - name: app1-new
         image: aandonov/app1:stage-1.1.2-566fe89
         ports:
         - containerPort: 80
