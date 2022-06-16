@@ -13,7 +13,7 @@ on:
     tags:
       - 'v*'
     paths:
-      - 'apps/app2/* *'
+      - 'apps/app2/**111'
 jobs:
   docker:
     runs-on: ubuntu-latest
