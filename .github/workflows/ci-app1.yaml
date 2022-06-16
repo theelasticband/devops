@@ -36,9 +36,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
-          tag: type=raw,value=stage-
-          tag-semver: |
-            {{raw}}
+          tags: type=raw,value=stage-{{raw}}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
