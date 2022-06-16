@@ -31,7 +31,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
-          images: aandonov/app1
+          images: aandonov/app2
           tags: type=raw,value=stage-${{ steps.bump_version.outputs.next-version }}-{{sha}}
       -
         name: Set up QEMU
@@ -49,6 +49,6 @@ jobs:
         name: Build and push app1
         uses: docker/build-push-action@v3
         with:
-          context: apps/app1/.
+          context: apps/app2/.
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
