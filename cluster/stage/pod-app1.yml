@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app1-service-new
-  namespace: stage
+  namespace: stagecd https://kubernetes.default.svc
 spec:
   type: NodePort
   selector:
