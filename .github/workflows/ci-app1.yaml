@@ -37,7 +37,7 @@ jobs:
         with:
           images: aandonov/app1
           tags: |
-            type=match,pattern=stage-v(\d.\d.\d.)
+            type=raw,value=stage-v1.1-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
