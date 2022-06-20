@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app2-service-new
-  namespace: local
+  namespace: stage
 spec:
   type: NodePort
   selector:
