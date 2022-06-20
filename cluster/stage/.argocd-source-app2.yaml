@@ -1,3 +1,4 @@
 kustomize:
   images:
+  - docker.io/aandonov/app1: 1.1
   - docker.io/aandonov/app2: 1.1
