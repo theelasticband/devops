@@ -17,7 +17,7 @@ spec:
     spec:  
       containers:
       - name: app2-new
-        image: aandonov/app2:stage-1.1.2-f922b45
+        image: aandonov/app2:1.1.6
         ports:
         - containerPort: 80
 ---
