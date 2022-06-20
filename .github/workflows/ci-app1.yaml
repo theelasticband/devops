@@ -14,6 +14,9 @@ on:
       - 'v*'
     paths:
       - 'apps/app1/**'
+  pull_request:
+    branches:
+      - 'main'
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -37,7 +40,7 @@ jobs:
         with:
           images: aandonov/app1
           tags: |
-            type=raw,value=stage-v{{version}}-{{sha}}
+            type=semver,enable=true,priority=900,prefix=stage-,suffix={{sha}},pattern=,value={{raw}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
