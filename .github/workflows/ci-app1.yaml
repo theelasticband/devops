@@ -37,7 +37,6 @@ jobs:
         with:
           images: aandonov/app1
           tags: |
-            type=semver,pattern={{version}},value=v1.0.0
             type=raw,value=stage-v{{version}}-{{sha}}
       -
         name: Set up QEMU
