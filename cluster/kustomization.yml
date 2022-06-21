@@ -7,4 +7,5 @@ images:
 - newName: https://hub.docker.com/r/aandonov/app2
   newTag: test
 resources:
+- pod-app1.yml
 - pod-app2.yml
