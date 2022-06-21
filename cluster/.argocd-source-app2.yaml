@@ -1,0 +1,4 @@
+#kustomize:
+#  images:
+ # - https://hub.docker.com/r/aandonov/app1: 1.1
+  #- https://hub.docker.com/r/aandonov/app2: 1.1
