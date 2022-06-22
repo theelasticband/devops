@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://github.com/theelasticband/devops/
     targetRevision: zgrujic
-    path: cluster/subchart1/templates
+    path: cluster/subchart1
   destination:
     server: https://kubernetes.default.svc
     namespace: stage
