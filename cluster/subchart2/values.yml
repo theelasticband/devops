@@ -1,0 +1,5 @@
+name: app2
+containers:
+  name: app2
+  image: aandonov/app2:1.1.8
+replicas: 1
