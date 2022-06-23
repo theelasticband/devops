@@ -52,3 +52,12 @@ jobs:
           context: apps/app2/.
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
+      -
+        name: Update Kustomization file
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: cluster/stage/kustomization.yml
+          propertyPath: images.aandonov/app2.newTag
+          value: ${{ steps.metadata.outputs.tags }}
+          commitChange: true
+          updateFile: true
