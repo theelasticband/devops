@@ -9,11 +9,11 @@ resources:
 - app2-svc.yml
 replicas:
 - name: app2
-  count: 1
+  count: 2
 images:
 - name: aandonov/app2
   newName: aandonov/app2
-  newTag: 1.1.8
+  newTag: 1.1.7
 - name: aandonov/app1
   newName: aandonov/app1
   newTag: 1.1.2
