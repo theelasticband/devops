@@ -61,7 +61,6 @@ jobs:
           value: ${{ steps.bump_version.outputs.next-version }}
           createPR: false
           branch: 'zgrujic' 
-          targetBranch: 'zgrujic'
           commitChange: true
           updateFile: true
           message: 'Update Image Version to ${{ steps.bump_version.outputs.next-version }}'
