@@ -59,5 +59,8 @@ jobs:
           valueFile: cluster/stage/kustomization.yml
           propertyPath: images.newTag
           value: ${{ steps.metadata.outputs.tags }}
+          branch: 'zgrujic' 
+          createPR: false
           commitChange: true
           updateFile: true
+          message: 'Update Image Version to ${{ steps.image.outputs.version }}'
