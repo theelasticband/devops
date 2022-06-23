@@ -58,9 +58,9 @@ jobs:
         with:
           valueFile: cluster/stage/kustomization.yml
           propertyPath: images.newTag
-          value: ${{ steps.metadata.outputs.tags }}
+          value: ${{ steps.bump_version.outputs.next-version }}
           branch: 'zgrujic' 
           createPR: false
           commitChange: true
           updateFile: true
-          message: 'Update Image Version to ${{ steps.image.outputs.version }}'
+          message: 'Update Image Version to ${{ steps.bump_version.outputs.next-version }}'
