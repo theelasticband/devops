@@ -16,6 +16,6 @@ images:
   - name: aandonov/app2
     newName: aandonov/app2
     newTag: 1.1.8
-  - name: aandonov/app1
-    newName: aandonov/app1
-    newTag: 1.0.1
+#  - name: aandonov/app1
+#    newName: aandonov/app1
+#    newTag: 1.0.1

@@ -59,8 +59,11 @@ jobs:
           valueFile: cluster/stage/kustomization.yml
           propertyPath: images.newTag
           value: ${{ steps.bump_version.outputs.next-version }}
-          branch: 'zgrujic' 
           createPR: false
+          branch: 'zgrujic' 
+          targetBranch: 'zgrujic'
           commitChange: true
           updateFile: true
           message: 'Update Image Version to ${{ steps.bump_version.outputs.next-version }}'
+          commitUserName: zarkogrujic
+          
