@@ -9,7 +9,7 @@ resources:
 - app2-svc.yml
 replicas:
 - name: app2
-  count: 4
+  count: 5
 images:
 - name: aandonov/app2
   newName: aandonov/app2
