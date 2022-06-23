@@ -3,10 +3,10 @@ kind: Kustomization
 namePrefix: stage-
 namespace: stage
 images:
-- name: app2
+- name: aandonov/app2
   newName: aandonov/app2
   newTag: 1.1.8
-- name: app1
+- name: aandonov/app1
   newName: aandonov/app1
   newTag: 1.1.2
 resources:
