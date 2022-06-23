@@ -57,7 +57,7 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: cluster/stage/kustomization.yml
-          propertyPath: images.app2.newTag
+          propertyPath: .images[:1].newTag
           value: ${{ steps.bump_version.outputs.next-version }}
           createPR: false
           branch: 'zgrujic' 
