@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- app1.deployment.yaml
+- app1.service.yaml
+- app2.deployment.yaml
+- app2.service.yaml

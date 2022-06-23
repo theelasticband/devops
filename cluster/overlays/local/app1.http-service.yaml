@@ -1,0 +1,15 @@
+# Setup HTTP access to APP1 via service on local environment
+- op: add
+  path: /spec/http/-
+  value:
+    name: app1-svc
+    match:
+    - uri:
+        prefix: "/app1"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: local-app1-svc.local.svc.cluster.local
+        port:
+          number: 80
