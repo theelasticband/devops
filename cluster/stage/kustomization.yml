@@ -3,19 +3,19 @@ kind: Kustomization
 namePrefix: stage-
 namespace: stage
 resources:
-- app1-pod.yml
-- app1-svc.yml
-- app2-pod.yml
-- app2-svc.yml
+  - app1-pod.yml
+  - app1-svc.yml
+  - app2-pod.yml
+  - app2-svc.yml
 replicas:
-- name: app2
-  count: 3
-- name: app1
-  count: 3
+  - name: app2
+    count: 3
+  - name: app1
+    count: 3
 images:
-- name: aandonov/app2
-  newName: aandonov/app2
-  newTag: 1.1.8
-- name: aandonov/app1
-  newName: aandonov/app1
-  newTag: 1.0.1
+  - name: aandonov/app2
+    newName: aandonov/app2
+    newTag: 1.1.8
+  - name: aandonov/app1
+    newName: aandonov/app1
+    newTag: 1.0.1
