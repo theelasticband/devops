@@ -1,0 +1,3 @@
+- op: add
+  path: /spec/hosts/-
+  value: istio.local.devops.net 

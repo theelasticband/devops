@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+
+labels:
+  - pairs:
+      environment: stage
+
+namePrefix: stage-
+
+namespace: stage
+
+patches:
+- target:
+    kind: Service
+    labelSelector: "application=app2"
+    version: v1
+  patch: |-
+    - op: replace
+      path: /spec/type
+      value: NodePort
+    - op: add
+      path: /spec/ports/0/nodePort
+      value: 30100

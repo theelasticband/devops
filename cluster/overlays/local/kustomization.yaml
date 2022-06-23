@@ -1,0 +1,45 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base/
+- ../../istio-base/
+
+namePrefix: local-
+
+namespace: local
+
+patches:
+
+## App - Istio Virtual Service Patches: ##
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: istio.vservice_hosts.yaml
+
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: istio.vservice_gateways.yaml
+
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: app1.http-service.yaml
+
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: app2.http-service.yaml
+
+## App - Istio Ingress Gateway Patches: ##
+- target:
+    version: v1beta1
+    kind: Gateway
+    name: app-gateway
+  path: gateway.http_port_80.yaml
+
