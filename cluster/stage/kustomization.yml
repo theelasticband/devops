@@ -2,8 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namePrefix: stage-
 namespace: stage
+resources:
+- app1-pod.yml
+- app1-svc.yml
+- app2-pod.yml
+- app2-svc.yml
 replicas:
-- name: aandonov/app2
+- name: app2
   count: 2
 images:
 - name: aandonov/app2
@@ -12,8 +17,3 @@ images:
 - name: aandonov/app1
   newName: aandonov/app1
   newTag: 1.1.2
-resources:
-- app1-pod.yml
-- app1-svc.yml
-- app2-pod.yml
-- app2-svc.yml
