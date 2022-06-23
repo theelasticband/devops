@@ -57,7 +57,7 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: cluster/stage/kustomization.yml
-          propertyPath: images.aandonov/app2.newTag
+          propertyPath: images.newTag
           value: ${{ steps.metadata.outputs.tags }}
           commitChange: true
           updateFile: true
