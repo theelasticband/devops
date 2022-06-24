@@ -32,7 +32,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: aandonov/app1
-          tags: type=raw,value=stage-${{ steps.bump_version.outputs.next-version }}-{{sha}}
+          tags: type=raw,value=${{ steps.bump_version.outputs.next-version }}
+          #tags: type=raw,value=stage-${{ steps.bump_version.outputs.next-version }}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -52,3 +53,16 @@ jobs:
           context: apps/app1/.
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
+      -
+        name: Update Kustomization file
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: cluster/stage/kustomization.yml
+          propertyPath: .images[:2].newTag
+          value: ${{ steps.bump_version.outputs.next-version }}
+          createPR: false
+          branch: 'zgrujic' 
+          commitChange: true
+          updateFile: true
+          message: 'Update Image Version to ${{ steps.bump_version.outputs.next-version }}'
+          commitUserName: zarkogrujic

@@ -33,6 +33,7 @@ jobs:
         with:
           images: aandonov/app2
           tags: type=raw,value=${{ steps.bump_version.outputs.next-version }}
+          #tags: type=raw,value=stage-${{ steps.bump_version.outputs.next-version }}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
