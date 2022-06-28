@@ -1,0 +1,33 @@
+  apiVersion: apps/v1
+  kind: Deployment
+
+  metadata:
+    name: app2-dpl
+    labels:
+      application: app2
+
+  spec:
+    replicas: 1
+
+    selector:
+      matchLabels:
+        application: app2
+
+    template:
+      metadata:
+        labels:
+          application: app2
+
+      spec:
+        containers:
+        - name: app2
+          image: aandonov/app2:latest
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "200m"
+            limits: 
+              memory: "128Mi"
+              cpu: "200m"
+          ports:
+          - containerPort: 80

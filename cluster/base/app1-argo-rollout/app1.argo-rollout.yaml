@@ -1,0 +1,55 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+
+metadata:
+  name: app1-argo-rollout
+  labels:
+    application: app1
+
+spec:
+  replicas: 10
+  minReadySeconds: 30
+  revisionHistoryLimit: 3
+
+  selector:
+    matchLabels:
+      application: app1
+
+  template:
+    metadata:
+      labels:
+        application: app1
+
+    spec:
+      containers:
+      - name: app1
+        image: aandonov/app1:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 80
+
+  strategy:
+    canary:
+      dynamicStableScale: true
+      
+      trafficRouting:
+        istio:
+          virtualService:
+            name: app-vservice
+            routes: 
+            - app1-svc-http
+          destinationRule:
+            name: app1-destrule
+            stableSubsetName: app1-stable 
+            canarySubsetName: app1-canary
+            
+      steps:
+      - setWeight: 10
+      - pause: { duration: 1m }
