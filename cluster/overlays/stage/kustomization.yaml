@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
 - ../../base
+- ../../base/app1-deployments
+- ../../base/app2-deployments
 
 labels:
   - pairs:
