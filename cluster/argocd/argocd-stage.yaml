@@ -18,15 +18,15 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: stage
-  sync:
-    comparedTo:
-      destination:
-        namespace: stage
-        server: https://kubernetes.default.svc
-      source:
-        repoURL: https://github.com/theelasticband/devops/
-        targetRevision: zgrujic
-        path: cluster/overlays/stage
+#  sync:
+#    comparedTo:
+#      destination:
+#        namespace: stage
+#        server: https://kubernetes.default.svc
+#      source:
+#        repoURL: https://github.com/theelasticband/devops/
+#        targetRevision: zgrujic
+#        path: cluster/overlays/stage
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
