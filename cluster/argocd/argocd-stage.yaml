@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app2
+  name: apps-stage
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: aandonov/app2
@@ -14,19 +14,19 @@ spec:
   source:
     repoURL: https://github.com/theelasticband/devops/
     targetRevision: zgrujic
-    path: cluster/app2
+    path: cluster/overlays/stage
   destination:
     server: https://kubernetes.default.svc
     namespace: stage
-  #sync:
-  #  comparedTo:
-  #    destination:
-  #      namespace: stage
-  #      server: https://kubernetes.default.svc
-  #    source:
-  #      repoURL: https://github.com/theelasticband/devops/
-  #      targetRevision: zgrujic
-  #      path: cluster
+  sync:
+    comparedTo:
+      destination:
+        namespace: stage
+        server: https://kubernetes.default.svc
+      source:
+        repoURL: https://github.com/theelasticband/devops/
+        targetRevision: zgrujic
+        path: cluster/overlays/stage
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

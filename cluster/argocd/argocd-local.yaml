@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app1
+  name: apps-local
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: aandonov/app1
+    argocd-image-updater.argoproj.io/image-list: aandonov/app2
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/git-branch: zgrujic
     argocd-image-updater.argoproj.io/aandonov.update-strategy: latest
@@ -14,19 +14,19 @@ spec:
   source:
     repoURL: https://github.com/theelasticband/devops/
     targetRevision: zgrujic
-    path: cluster/app1
+    path: cluster/overlays/local
   destination:
     server: https://kubernetes.default.svc
-    namespace: stage
-  #sync:
-  #  comparedTo:
-  #    destination:
-  #      namespace: stage
-  #      server: https://kubernetes.default.svc
-  #    source:
-  #      repoURL: https://github.com/theelasticband/devops/
-  #      targetRevision: zgrujic
-  #      path: cluster
+    namespace: local
+  sync:
+    comparedTo:
+      destination:
+        namespace: local
+        server: https://kubernetes.default.svc
+      source:
+        repoURL: https://github.com/theelasticband/devops/
+        targetRevision: zgrujic
+        path: cluster/overlays/local
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

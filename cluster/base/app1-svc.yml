@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app1-service
-  namespace: local
+  #namespace: local
 spec:
   type: NodePort
   selector:

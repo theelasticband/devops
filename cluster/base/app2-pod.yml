@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: stage
-  name: app1
+  #namespace: local
+  name: app2
   labels:
-    app: web-nginx1
+    app: web-nginx2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web-nginx1
+      app: web-nginx2
   template:
     metadata:
       labels:
-        app: web-nginx1
+        app: web-nginx2
     spec:  
       containers:
-      - name: app1
-        image: aandonov/app1:latest
+      - name: app2
+        image: aandonov/app2:latest
         ports:
         - containerPort: 80
