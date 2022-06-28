@@ -18,15 +18,15 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: local
-  sync:
-    comparedTo:
-      destination:
-        namespace: local
-        server: https://kubernetes.default.svc
-      source:
-        repoURL: https://github.com/theelasticband/devops/
-        targetRevision: zgrujic
-        path: cluster/overlays/local
+#  sync:
+#    comparedTo:
+#      destination:
+#        namespace: local
+#        server: https://kubernetes.default.svc
+#      source:
+#        repoURL: https://github.com/theelasticband/devops/
+#        targetRevision: zgrujic
+#        path: cluster/overlays/local
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
