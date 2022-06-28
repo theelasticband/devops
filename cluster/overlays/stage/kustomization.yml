@@ -10,7 +10,7 @@ resources:
 images:
   - name: aandonov/app2
     newName: aandonov/app2
-    newTag: 1.1.16
+    newTag: 1.1.15
   - name: aandonov/app1
     newName: aandonov/app1
     newTag: 1.1.2
