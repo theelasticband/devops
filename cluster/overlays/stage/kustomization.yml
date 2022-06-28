@@ -15,7 +15,23 @@ images:
     newName: aandonov/app1
     newTag: 1.1.2
 
-
+patches:
+- target:
+    version: v1
+    kind: Service
+    name: app1-service
+  patch: |-
+    - op: replace
+      path: /spec/ports/0/nodePort
+      value: 31180
+- target:
+    version: v1
+    kind: Service
+    name: app2-service
+  patch: |-
+    - op: replace
+      path: /spec/ports/0/nodePort
+      value: 31190
 
 #patches:
 #- target:
