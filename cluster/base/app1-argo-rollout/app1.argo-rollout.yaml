@@ -6,7 +6,8 @@ metadata:
   name: app1-argo-rollout
   labels:
     application: app1
-
+    role: worker-node
+    
 spec:
   replicas: 10
   minReadySeconds: 30
@@ -20,6 +21,7 @@ spec:
     metadata:
       labels:
         application: app1
+        role: worker-node
 
     spec:
       containers:

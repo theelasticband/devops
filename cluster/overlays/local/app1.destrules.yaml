@@ -3,7 +3,7 @@
 ## Configure DestinationRule request hostname
 - op: add
   path: /spec/host
-  value: istio.local.devops.net
+  value: local-app1-svc.local.svc.cluster.local
 
 ## Configure subset for routing to stable ReplicaSet
 - op: add
@@ -11,6 +11,7 @@
   value:
     name: local-app1-stable
     labels:
+      role: worker-node
       application: app1
 
 ## Configure subset for routing to canary ReplicaSet
@@ -19,4 +20,5 @@
   value:
     name: local-app1-canary
     labels:
+      role: worker-node
       application: app1
