@@ -25,10 +25,8 @@
             
       steps:
       - setWeight: 10
-        #- pause: { } 
-        # - setWeight: 20
-      - pause: { duration: 30s }              
-        #- setWeight: 40
-        #- pause: { duration: 30s }
-        #- setWeight: 50
-        #- pause: { }
+      - pause: { } 
+      - setWeight: 30
+      - pause: { duration: 30s }
+      - setWeight: 50
+      - pause: { }
