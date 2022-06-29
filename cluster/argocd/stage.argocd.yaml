@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: stage-app
+  name: stage-application
   namespace: argocd
 
 spec:
@@ -13,9 +13,9 @@ spec:
     server: https://kubernetes.default.svc
 
   source:
-    repoURL: https://github.com/markokli/devops-ex-svs
-    targetRevision: HEAD
     path: cluster/overlays/stage
+    repoURL: https://github.com/theelasticband/devops
+    targetRevision: klincharov
 
   syncPolicy:
     syncOptions:

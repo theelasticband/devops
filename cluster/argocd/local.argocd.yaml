@@ -13,8 +13,8 @@ spec:
     server: https://kubernetes.default.svc
 
   source:
-    repoURL: https://github.com/markokli/devops-ex-svs
-    targetRevision: HEAD
+    repoURL: https://github.com/theelasticband/devops
+    targetRevision: klincharov
     path: cluster/overlays/local
 
   syncPolicy:
