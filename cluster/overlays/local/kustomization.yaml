@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - namespace.yaml
+- local-enable-mtls.yaml
 - ../../base/
 - ../../base/app2-deployment
 - ../../base/istio/
