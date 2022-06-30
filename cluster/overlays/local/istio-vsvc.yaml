@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: apps-vs-local
+  namespace: local
+spec:
+  hosts:      
+  - "*" 
+  gateways:
+  - gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/app1"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: "app1-service.local.svc.cluster.local"
+        port:
+          number: 80
+  - match:
+    - uri:
+        prefix: "/app2"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: "app2-service.local.svc.cluster.local"
+        port:
+          number: 80
