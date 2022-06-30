@@ -5,7 +5,7 @@ metadata:
   namespace: local
 spec:
   hosts:      
-  - "*" 
+  - "rume.com" 
   gateways:
   - gateway
   http:
