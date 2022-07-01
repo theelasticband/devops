@@ -1,4 +1,4 @@
-# deployments base module
+# APP2 deployment base module
 
 This directory is to serve as a base for kustomization of Deployments for app2 application.
 
