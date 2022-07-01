@@ -60,6 +60,7 @@ jobs:
           valueFile: cluster/overlays/stage/kustomization.yml
           propertyPath: .images[0].newTag
           value: ${{ steps.bump_version.outputs.next-version }}
+          #value: stage-v${{ steps.bump_version.outputs.next-version }}-{{sha}}
           createPR: false
           branch: 'zgrujic' 
           commitChange: true

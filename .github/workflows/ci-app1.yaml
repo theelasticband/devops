@@ -33,7 +33,7 @@ jobs:
         with:
           images: aandonov/app1
           tags: type=raw,value=${{ steps.bump_version.outputs.next-version }}
-          #tags: type=raw,value=stage-${{ steps.bump_version.outputs.next-version }}-{{sha}}
+          #tags: type=raw,value=stage-v${{ steps.bump_version.outputs.next-version }}-{{sha}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -60,6 +60,7 @@ jobs:
           valueFile: cluster/overlays/stage/kustomization.yml
           propertyPath: .images[1].newTag
           value: ${{ steps.bump_version.outputs.next-version }}
+          #value: stage-v${{ steps.bump_version.outputs.next-version }}-{{sha}}
           createPR: false
           branch: 'zgrujic' 
           commitChange: true
