@@ -5,6 +5,11 @@
   path: /spec/template/spec/containers/0/image
   value: aandonov/app1:latest
 
+## Configure instance count in rollout
+- op: replace
+  path: /spec/replicas
+  value: 5
+
 ## Configure deployment strategy of APP1 to be used
 - op: replace
   path: /spec/strategy
