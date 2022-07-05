@@ -2,24 +2,24 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: local-application
+  name: stage-application
   namespace: argocd
 
 spec:
   project: default
 
   destination:
-    namespace: local
+    namespace: stage
     server: https://kubernetes.default.svc
 
   source:
-    repoURL: https://github.com/theelasticband/devops/
+    path: cluster/overlays/stage
+    repoURL: https://github.com/theelasticband/devops
     targetRevision: klincharov
-    path: cluster
 
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-    automated:
-      prune: true
-      selfHeal: false
+        #automated:
+        #  prune: true
+        #  selfHeal: false

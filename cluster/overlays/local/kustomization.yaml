@@ -1,0 +1,58 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- namespace.yaml
+- local-enable-mtls.yaml
+- ../../base/
+- ../../base/app2-deployment
+- ../../base/istio/
+- ../../base/app1-argo-rollout/
+
+namePrefix: local-
+
+namespace: local
+
+patches:
+
+## App - Istio VirtualService Patches: ##
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: istio.vservice.yaml
+
+# Istio VirtualService patches specific to app1 paths
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: app1.vservice-paths.yaml
+
+# Istio VirtualService patches specific to app2 paths
+- target:
+    version: v1beta1
+    kind: VirtualService
+    name: app-vservice
+  path: app2.vservice-paths.yaml
+
+## App - Istio Ingress Gateway Patches: ##
+- target:
+    version: v1beta1
+    kind: Gateway
+    name: app-gateway
+  path: istio.gateway.yaml
+
+- target:
+    version: v1beta1
+    kind: DestinationRule
+    name: app1-destrule
+  path: app1.destrules.yaml
+
+- target:
+    version: v1alpha1
+    kind: Rollout
+    name: app1-argo-rollout
+  path: app1.argo-rollout.yaml
+
+  

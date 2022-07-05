@@ -1,0 +1,37 @@
+# Configure Rollout for App1 to fit 'local' environment requirements
+
+## Configure container image of APP1 to be used
+- op: replace
+  path: /spec/template/spec/containers/0/image
+  value: aandonov/app1:latest
+
+## Configure instance count in rollout
+- op: replace
+  path: /spec/replicas
+  value: 5
+
+## Configure deployment strategy of APP1 to be used
+- op: replace
+  path: /spec/strategy
+  value:
+    canary:
+      dynamicStableScale: true
+      
+      trafficRouting:
+        istio:
+          virtualService:
+            name: local-app-vservice
+            routes: 
+            - app1-svc-http
+          destinationRule:
+            name: local-app1-destrule
+            stableSubsetName: local-app1-stable 
+            canarySubsetName: local-app1-canary
+            
+      steps:
+      - setWeight: 10
+      - pause: { } 
+      - setWeight: 30
+      - pause: { duration: 30s }
+      - setWeight: 50
+      - pause: { }
