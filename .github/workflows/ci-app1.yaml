@@ -53,20 +53,20 @@ jobs:
           context: apps/app1/.
           push: true
           tags: ${{ steps.metadata.outputs.tags }}
-      -
-        name: Update Kustomization file - STAGE
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: cluster/overlays/stage/kustomization.yaml
-          propertyPath: .images[1].newTag
-          value: ${{ steps.bump_version.outputs.next-version }}
-          #value: stage-v${{ steps.bump_version.outputs.next-version }}-{{sha}}
-          createPR: false
-          branch: 'zgrujic' 
-          commitChange: true
-          updateFile: true
-          message: 'Update app1 Image Version to ${{ steps.bump_version.outputs.next-version }}'
-          commitUserName: zarkogrujic
+#      -
+#        name: Update Kustomization file - STAGE
+#        uses: fjogeleit/yaml-update-action@main
+#        with:
+#          valueFile: cluster/overlays/stage/kustomization.yaml
+#          propertyPath: .images[1].newTag
+#          value: ${{ steps.bump_version.outputs.next-version }}
+#          #value: stage-v${{ steps.bump_version.outputs.next-version }}-{{sha}}
+#          createPR: false
+#          branch: 'zgrujic' 
+#          commitChange: true
+#          updateFile: true
+#          message: 'Update app1 Image Version to ${{ steps.bump_version.outputs.next-version }}'
+#          commitUserName: zarkogrujic
       -
         name: Update Argo-Rollout file - LOCAL
         uses: fjogeleit/yaml-update-action@main
