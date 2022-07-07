@@ -1,15 +1,9 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: gateway
-  namespace: local
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - port:
+- op: add
+  path: /spec/servers/-
+  value:
+    port:
       number: 80
       name: http
       protocol: HTTP
     hosts:
-      - "local/*"  
+    - "local/*"

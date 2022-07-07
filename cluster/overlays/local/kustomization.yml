@@ -3,3 +3,12 @@ kind: Kustomization
 namespace: local
 resources:
 - ../../base/
+- ../../base/istio-gateway/
+
+
+patches:
+- target:
+    version: v1beta1
+    kind: Gateway
+    name: gateway
+  path: istio-gateway.yaml
