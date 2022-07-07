@@ -11,4 +11,4 @@ patches:
     version: v1beta1
     kind: Gateway
     name: gateway
-  path: istio-gateway.yaml
+  path: istio-gw.yaml
