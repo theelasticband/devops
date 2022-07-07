@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: local
 resources:
 - ../../base/
-- ../../base/istio-gateway/
+- ../../base/istio-gateway/istio-gateway.yaml
 
 
 patches:
