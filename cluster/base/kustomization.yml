@@ -6,3 +6,4 @@ resources:
 - app1-svc.yml
 - app2-pod.yml
 - app2-svc.yml
+- ../../base/istio-gateway/
