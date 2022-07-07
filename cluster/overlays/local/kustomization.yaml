@@ -5,7 +5,8 @@ resources:
 - ../../base/
 - ../../base/istio-gateway/
 - istio-vsvc.yaml
-
+- app1-argo-rollout.yaml
+- app1-destinationrule.yaml
 
 patches:
 - target:

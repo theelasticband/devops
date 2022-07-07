@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: apps-vs-local
-  namespace: local
 spec:
   hosts:      
   - "*" 
@@ -17,8 +16,16 @@ spec:
     route:
     - destination:
         host: "app1-service.local.svc.cluster.local"
+        subset: local-app1-service-stable
         port:
           number: 80
+      weight: 100
+    - destination:
+        host: "app1-service.local.svc.cluster.local"
+        subset: local-app1-service-canary
+        port:
+          number: 80
+      weight: 0
   - match:
     - uri:
         prefix: "/app2"

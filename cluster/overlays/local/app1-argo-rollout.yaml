@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Rollout
+metadata:
+  namespace: local
+  name: app1-local-rollout-canary
+  labels:
+    app: web-nginx1
+spec:
+  replicas: 5
+  minReadySeconds: 30
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: web-nginx1
+  template:
+    metadata:
+      labels:
+        app: web-nginx1
+    spec:  
+      containers:
+      - name: app1
+        image: aandonov/app1:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+  strategy:
+    canary:
+      dynamicStableScale: true
+      trafficRouting:
+        istio:
+          virtualService:
+            name: apps-vs-local
+            routes: 
+            - app1-svc-http
+          destinationRule:
+            name: local-app1-destrule
+            stableSubsetName: local-app1-stable 
+            canarySubsetName: local-app1-canary
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 1m}
+      - setWeight: 60
+      - pause: {duration: 1m}
+      - setWeight: 80
+      - pause: {duration: 1m}        

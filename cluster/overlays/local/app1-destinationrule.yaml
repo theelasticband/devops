@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+
+metadata: 
+  name: app1-destrule
+  labels: 
+    application: web-nginx1
+  
+spec: 
+  host: app1-service.local.svc.cluster.local 
+  
+  subsets: 
+  - value:
+      name: local-app1-service-stable
+      labels:
+        role: worker-node
+        application: web-nginx1
+  - value:
+      name: local-app1-service-canary
+      labels:
+        role: worker-node
+        application: web-nginx1   
