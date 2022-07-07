@@ -57,7 +57,7 @@ jobs:
         name: Update Kustomization file
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: cluster/overlays/stage/kustomization.yml
+          valueFile: cluster/overlays/stage/kustomization.yaml
           propertyPath: .images[1].newTag
           value: ${{ steps.bump_version.outputs.next-version }}
           #value: stage-v${{ steps.bump_version.outputs.next-version }}-{{sha}}
