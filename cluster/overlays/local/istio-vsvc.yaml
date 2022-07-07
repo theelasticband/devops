@@ -8,7 +8,8 @@ spec:
   gateways:
   - gateway
   http:
-  - match:
+  - name: app1-route
+    match:
     - uri:
         prefix: "/app1"
     rewrite:
@@ -26,7 +27,8 @@ spec:
         port:
           number: 80
       weight: 0
-  - match:
+  - name: app2-route
+    match:
     - uri:
         prefix: "/app2"
     rewrite:

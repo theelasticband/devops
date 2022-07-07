@@ -31,7 +31,7 @@ spec:
           virtualService:
             name: apps-vs-local
             routes: 
-            - app1-svc-http
+            - app1-route
           destinationRule:
             name: local-app1-destrule
             stableSubsetName: local-app1-stable 
