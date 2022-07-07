@@ -16,13 +16,13 @@ spec:
     metadata:
       labels:
         app: web-nginx1
-    spec:  
+    spec:
       containers:
-      - name: app1
-        image: aandonov/app1:1.1.7
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
+        - name: app1
+          image: aandonov/app1:1.1.8
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
   strategy:
     canary:
       dynamicStableScale: true
@@ -30,18 +30,22 @@ spec:
         istio:
           virtualService:
             name: apps-vs-local
-            routes: 
-            - app1-route
+            routes:
+              - app1-route
           destinationRule:
             name: app1-destrule
-            stableSubsetName: local-app1-service-stable 
+            stableSubsetName: local-app1-service-stable
             canarySubsetName: local-app1-service-canary
       steps:
-      - setWeight: 20
-      - pause: {duration: 1m}
-      - setWeight: 40
-      - pause: {duration: 1m}
-      - setWeight: 60
-      - pause: {duration: 1m}
-      - setWeight: 80
-      - pause: {duration: 1m}        
+        - setWeight: 20
+        - pause:
+            duration: 1m
+        - setWeight: 40
+        - pause:
+            duration: 1m
+        - setWeight: 60
+        - pause:
+            duration: 1m
+        - setWeight: 80
+        - pause:
+            duration: 1m
