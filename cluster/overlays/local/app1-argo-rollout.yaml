@@ -33,9 +33,9 @@ spec:
             routes: 
             - app1-route
           destinationRule:
-            name: local-app1-destrule
-            stableSubsetName: local-app1-stable 
-            canarySubsetName: local-app1-canary
+            name: app1-destrule
+            stableSubsetName: local-app1-service-stable 
+            canarySubsetName: local-app1-service-canary
       steps:
       - setWeight: 20
       - pause: {}
