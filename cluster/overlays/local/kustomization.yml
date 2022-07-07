@@ -4,6 +4,7 @@ namespace: local
 resources:
 - ../../base/
 - ../../base/istio-gateway/
+- istio-vsvc.yaml
 
 
 patches:
