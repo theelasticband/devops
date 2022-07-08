@@ -7,7 +7,7 @@ metadata:
     app: web-nginx1
 spec:
   replicas: 5
-  minReadySeconds: 15
+  minReadySeconds: 15                                             # time needed for pod to get ready
   revisionHistoryLimit: 2                                         # number od ReplicaSets for rollback
   selector:
     matchLabels:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: aandonov/app1:1.1.9                              # actual version, updated from ci-app1.yaml file
+          image: aandonov/app1:1.1.9                              # actual version, updated by Guthub action from ci-app1.yaml file
           imagePullPolicy: Always
           ports:
             - containerPort: 80
