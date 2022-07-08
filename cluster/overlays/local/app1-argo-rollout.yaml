@@ -7,7 +7,7 @@ metadata:
     app: web-nginx1
 spec:
   replicas: 5
-  minReadySeconds: 30
+  minReadySeconds: 15
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -29,11 +29,11 @@ spec:
       trafficRouting:
         istio:
           virtualService:
-            name: apps-vs-local
+            name: apps-vs-local      # name of virtual service that we use
             routes:
-              - app1-route
+              - app1-route           # route for the app1 from virtual service
           destinationRule:
-            name: app1-destrule
+            name: app1-destrule                           # name of the destination rule where subsets are defined
             stableSubsetName: local-app1-service-stable
             canarySubsetName: local-app1-service-canary
       steps:
