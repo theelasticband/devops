@@ -8,7 +8,7 @@ metadata:
 spec:
   replicas: 5
   minReadySeconds: 15
-  revisionHistoryLimit: 2
+  revisionHistoryLimit: 2                                         # number od ReplicaSets for rollback
   selector:
     matchLabels:
       app: web-nginx1
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: aandonov/app1:1.1.9
+          image: aandonov/app1:1.1.9                              # actual version, updated from ci-app1.yaml file
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -29,11 +29,11 @@ spec:
       trafficRouting:
         istio:
           virtualService:
-            name: apps-vs-local
+            name: apps-vs-local                                   # name of Virtual Service we use
             routes:
-              - app1-route
+              - app1-route                                        # route for app1 from Virtual Service
           destinationRule:
-            name: app1-destrule
+            name: app1-destrule                                   # destination rule where subsets are defined
             stableSubsetName: local-app1-service-stable
             canarySubsetName: local-app1-service-canary
       steps:
