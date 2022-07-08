@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: aandonov/app1:1.1.8
+          image: aandonov/app1:1.1.9
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -29,11 +29,11 @@ spec:
       trafficRouting:
         istio:
           virtualService:
-            name: apps-vs-local      # name of virtual service that we use
+            name: apps-vs-local
             routes:
-              - app1-route           # route for the app1 from virtual service
+              - app1-route
           destinationRule:
-            name: app1-destrule                           # name of the destination rule where subsets are defined
+            name: app1-destrule
             stableSubsetName: local-app1-service-stable
             canarySubsetName: local-app1-service-canary
       steps:
