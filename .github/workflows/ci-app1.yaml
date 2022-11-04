@@ -6,6 +6,7 @@ on:
       - 'vprocopan'
       - 'main'
       - 'klincharov'
+      - 'test'
     paths:
       - 'apps/app1/**'
       - '!apps/app1/.version'
