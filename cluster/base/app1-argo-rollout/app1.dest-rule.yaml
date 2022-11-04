@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+
+metadata: 
+  name: app1-destrule
+  labels: 
+    application: app1
+  
+spec: 
+  host: null 
+  
+  subsets: []
+

@@ -1,0 +1,24 @@
+# Configure destination rules for subsets of istio virtual service, to be used by Argo rollouts to control traffic during canary deployments
+
+## Configure DestinationRule request hostname
+- op: add
+  path: /spec/host
+  value: local-app1-svc.local.svc.cluster.local
+
+## Configure subset for routing to stable ReplicaSet
+- op: add
+  path: /spec/subsets/-
+  value:
+    name: local-app1-stable
+    labels:
+      role: worker-node
+      application: app1
+
+## Configure subset for routing to canary ReplicaSet
+- op: add
+  path: /spec/subsets/-
+  value:
+    name: local-app1-canary
+    labels:
+      role: worker-node
+      application: app1

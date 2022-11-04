@@ -1,0 +1,9 @@
+# Specify which Istio Ingress Gateways to connect the virtual service to
+- op: add
+  path: /spec/gateways/-
+  value: stage/stage-app-gateway
+
+# FQDN to which traffic is being sent (and which should be treated by this virtual service)
+- op: add
+  path: /spec/hosts/-
+  value: istio.stage.devops.net 
